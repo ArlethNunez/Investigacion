@@ -84,25 +84,27 @@ async function main() {
     });
     //Organizadores
     await prisma.organizer.createMany({
-        data: [
-            {
-                name: "Universidad Técnica Nacional",
-                description: "Institución organizadora de eventos académicos y tecnológicos.",
-                imageUrl: "org_utn_software.png",
-            },
-            {
-                name: "Comunidad ISWARC",
-                description: "Comunidad académica orientada a innovación, software y realidad extendida.",
-                imageUrl: "org_cet_comunidad.png",
-            },
-            {
-                name: "TechEvents CR",
-                description: "Organización dedicada a eventos de tecnología y desarrollo web.",
-                imageUrl: "org_global_tech.png",
-            },
-        ],
-        skipDuplicates: true,
-    });
+    data: [
+        {
+            id: 1,
+            name: "Universidad Técnica Nacional",
+            description: "Institución organizadora de eventos académicos y tecnológicos.",
+            imageUrl: "org_utn_software.png",
+        },
+        {
+            id: 2,
+            name: "Comunidad ISWARC",
+            description: "Comunidad académica orientada a innovación, software y realidad extendida.",
+            imageUrl: "org_cet_comunidad.png",
+        },
+        {
+            id: 3,
+            name: "TechEvents CR",
+            description: "Organización dedicada a eventos de tecnología y desarrollo web.",
+            imageUrl: "org_global_tech.png",
+        },
+    ],
+});
 
     // Eventos
     await prisma.event.createMany({

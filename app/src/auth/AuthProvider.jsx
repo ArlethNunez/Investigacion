@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "./authContext";
 import { loginUser, registerUser, getProfile } from "../services/authService";
 
 const TOKEN_KEY = "auth_token";
