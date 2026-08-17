@@ -190,8 +190,8 @@ export function Navbar() {
                     {/* LINKS ORIGINALES */}
                     {/* ================================================= */}
 
-                    <div className="hidden md:flex items-center gap-2 rounded-full border border-border bg-card/70 p-1 shadow-sm">
-
+                    {/* Se mantienen en el código, pero ya no se muestran */}
+                    <div className="hidden">
 
                         {/* INICIO */}
 
@@ -469,6 +469,7 @@ export function Navbar() {
                 `}
             >
 
+
                 <div className="flex h-full flex-col">
 
 
@@ -570,11 +571,15 @@ export function Navbar() {
 
                                 {/* CREAR EVENTO */}
 
+                                {/* Se mantiene en el código, pero se oculta
+                                    para que el menú muestre únicamente:
+                                    Inicio, Eventos e Inscripciones */}
+
                                 {canManageEvents && (
 
                                     <NavLink
                                         to="/create"
-                                        className={linkClass}
+                                        className={`${linkClass} hidden`}
                                         onClick={closeMenu}
                                     >
 
@@ -664,6 +669,7 @@ export function Navbar() {
 
 
                             </div>
+
 
                         </div>
 
@@ -800,6 +806,7 @@ export function Navbar() {
 
                             </button>
 
+
                         </div>
 
 
@@ -825,5 +832,6 @@ export function Navbar() {
 
 
         </header>
+
     );
 }
