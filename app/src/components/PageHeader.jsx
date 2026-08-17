@@ -24,7 +24,7 @@ export function PageHeader({ title, description, isBadge = false }) {
         {isBadge && description !== undefined && (
             <Badge
             variant="secondary"
-            className="px-3 py-0.5 text-xs font-semibold uppercase tracking-wider"
+            className="bg-blue-700 text-white px-3 py-0.5 text-xs font-semibold uppercase tracking-wider"
             >
             {description}
             </Badge>
