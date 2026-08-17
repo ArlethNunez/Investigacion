@@ -456,15 +456,15 @@ export function Navbar() {
 
             <aside
                 className={`
-                    fixed left-0 top-0 z-[100]
+                    fixed right-0 top-0 z-[100]
                     h-screen w-72
-                    border-r border-border
+                    border-l border-border
                     bg-background
                     shadow-2xl
                     transition-transform duration-300 ease-in-out
                     ${mobileMenuOpen
                         ? "translate-x-0"
-                        : "-translate-x-full"
+                        : "translate-x-full"
                     }
                 `}
             >
@@ -601,217 +601,9 @@ export function Navbar() {
                                     Inscripciones
 
                                 </NavLink>
-
-
                             </div>
-
                         </div>
-
-
-                        {/* ================================================= */}
-                        {/* SEPARADOR */}
-                        {/* ================================================= */}
-
-                        <div className="my-5 border-t border-border" />
-
-
-                        {/* ================================================= */}
-                        {/* INFORMACIÓN DEL USUARIO */}
-                        {/* ================================================= */}
-
-                        <div>
-
-                            <p className="mb-3 px-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                Usuario
-                            </p>
-
-
-                            <div className="flex items-center gap-3 rounded-xl bg-card/70 px-4 py-3">
-
-
-                                <Avatar className="h-10 w-10">
-
-                                    <AvatarFallback>
-
-                                        {isAuthenticated
-                                            ? getInitials(
-                                                user.fullName
-                                            )
-                                            : (
-                                                <UserIcon className="h-4 w-4" />
-                                            )}
-
-                                    </AvatarFallback>
-
-                                </Avatar>
-
-
-                                <div className="min-w-0">
-
-                                    <p className="truncate font-medium">
-
-                                        {isAuthenticated
-                                            ? user.fullName
-                                            : "Invitado"}
-
-                                    </p>
-
-
-                                    <p className="truncate text-xs text-muted-foreground">
-
-                                        {isAuthenticated
-                                            ? user.role?.name
-                                            : "Sin sesión"}
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        {/* ================================================= */}
-                        {/* OPCIONES DE CUENTA */}
-                        {/* ================================================= */}
-
-                        <div className="mt-3 flex flex-col gap-1">
-
-
-                            {/* LOGIN */}
-
-                            <NavLink
-                                to="/login"
-                                onClick={closeMenu}
-                                className={`
-                                    flex items-center gap-3
-                                    rounded-full px-4 py-2
-                                    text-muted-foreground
-                                    hover:bg-primary
-                                    hover:text-primary-foreground
-                                    ${
-                                        isAuthenticated
-                                            ? "pointer-events-none opacity-50"
-                                            : ""
-                                    }
-                                `}
-                            >
-
-                                <LogIn className="h-4 w-4" />
-
-                                Iniciar sesión
-
-                            </NavLink>
-
-
-                            {/* REGISTRO */}
-
-                            <NavLink
-                                to="/register"
-                                onClick={closeMenu}
-                                className={`
-                                    flex items-center gap-3
-                                    rounded-full px-4 py-2
-                                    text-muted-foreground
-                                    hover:bg-primary
-                                    hover:text-primary-foreground
-                                    ${
-                                        isAuthenticated
-                                            ? "pointer-events-none opacity-50"
-                                            : ""
-                                    }
-                                `}
-                            >
-
-                                <UserPlus className="h-4 w-4" />
-
-                                Registrarse
-
-                            </NavLink>
-
-
-                            {/* LOGOUT */}
-
-                            <button
-                                disabled={!isAuthenticated}
-                                onClick={handleLogout}
-                                className="
-                                    flex items-center gap-3
-                                    rounded-full px-4 py-2
-                                    text-left
-                                    text-destructive
-                                    hover:bg-destructive/10
-                                    disabled:pointer-events-none
-                                    disabled:opacity-50
-                                "
-                            >
-
-                                <LogOut className="h-4 w-4" />
-
-                                Cerrar sesión
-
-                            </button>
-
-
-                        </div>
-
-
-                        {/* ================================================= */}
-                        {/* SEPARADOR */}
-                        {/* ================================================= */}
-
-                        <div className="my-5 border-t border-border" />
-
-
-                        {/* ================================================= */}
-                        {/* TEMA */}
-                        {/* ================================================= */}
-
-                        <div>
-
-                            <p className="mb-2 px-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                Apariencia
-                            </p>
-
-
-                            <button
-                                onClick={toggleTheme}
-                                className="
-                                    flex w-full items-center gap-3
-                                    rounded-full px-4 py-2
-                                    text-left
-                                    text-muted-foreground
-                                    hover:bg-accent
-                                    hover:text-accent-foreground
-                                "
-                            >
-
-                                {darkMode ? (
-
-                                    <Sun className="h-5 w-5" />
-
-                                ) : (
-
-                                    <Moon className="h-5 w-5" />
-
-                                )}
-
-
-                                {darkMode
-                                    ? "Cambiar a modo claro"
-                                    : "Cambiar a modo oscuro"}
-
-                            </button>
-
-
-                        </div>
-
-
                     </div>
-
 
                     {/* ================================================= */}
                     {/* PIE DEL MENÚ */}
