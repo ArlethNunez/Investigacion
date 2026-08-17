@@ -1,4 +1,15 @@
 import { Badge } from "@/components/ui/badge";
+import { useFocusOnRouteChange } from "@/hooks/useFocusOnRouteChange";
+
+export function PageHeader({ title, description, isBadge = false }) {
+    const headingRef = useFocusOnRouteChange();
+    return (
+        <div className="mb-10 space-y-2">
+            <div className="flex items-center gap-3">
+                <h1 ref={headingRef} tabIndex={-1} className="...">
+                    {title}
+                </h1>
+                ...
 export function PageHeader({ title, description, isBadge = false }) {
     return (
         <div className="mb-10 space-y-2">

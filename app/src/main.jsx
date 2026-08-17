@@ -17,8 +17,11 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/events/:id" element={<EventDetailPage />} />
-          <Route path="/create" element={<CreateEventPage />} />
-          <Route path="/events/:id/edit" element={<EditEventPage />} />
+
+          <Route element={<RutaProtegida isAuthorized={/* tu lógica de auth */} />}>
+            <Route path="/create" element={<CreateEventPage />} />
+            <Route path="/events/:id/edit" element={<EditEventPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
