@@ -3,6 +3,7 @@ import { EventList } from "../components/EventList";
 import { getEvents } from "../services/eventsService";
 import { PageHeader } from "@/components/PageHeader";
 import { SearchBar } from "@/components/SearchBar";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 
@@ -34,7 +35,7 @@ export function EventsPage() {
     const filteredEvents = events.filter((event) =>
         event.title.toLowerCase().includes(search.toLowerCase())
     );
-   
+    
     if (loading) {
         return (
             <p className="text-center text-muted-foreground">
@@ -51,6 +52,13 @@ export function EventsPage() {
     }
     return (
         <section>
+            <Breadcrumbs
+                items={[
+                    { label: "Inicio", to: "/" },
+                    { label: "Eventos" },
+                ]}
+            />
+
             <PageHeader
                 title="Eventos"
                 description={filteredEvents.length}

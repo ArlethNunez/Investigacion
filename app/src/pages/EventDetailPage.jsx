@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+
 import {
     CalendarDays,
     MapPin,
@@ -53,6 +55,13 @@ export function EventDetailPage() {
     if (!event) {
         return (
             <section className="space-y-4">
+                <Breadcrumbs
+                    items={[
+                        { label: "Inicio", to: "/" },
+                        { label: "Eventos", to: "/events" },
+                        { label: "Evento no encontrado" }
+                    ]}
+                />
                 <PageHeader
                     title="Evento no encontrado"
                     description="No existe un evento asociado al identificador solicitado."
@@ -69,6 +78,14 @@ export function EventDetailPage() {
 
     return (
         <section className="space-y-6">
+            <Breadcrumbs
+                items={[
+                    { label: "Inicio", to: "/" },
+                    { label: "Eventos", to: "/events" },
+                    { label: event.title }
+                ]}
+            />
+
             <Button asChild variant="outline">
                 <Link to="/events">
                     <ArrowLeft className="mr-2 h-4 w-4" />

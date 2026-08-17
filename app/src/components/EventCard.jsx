@@ -22,21 +22,14 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import toast from "react-hot-toast"
+import { useAuth } from "@/auth/useAuth";
 
 export function EventCard({ event }) {
     const URL = import.meta.env.VITE_IMAGE_URL
+    const { hasRole } = useAuth();
+    const canManageEvents = hasRole(["Administrador"]);
+
     function handleDeleteEvent(event) {
-        /*
-        En esta clase no se llama al API porque todavía no existe
-        una acción real para eliminar.
-        Cuando exista el endpoint DELETE, se podría usar:
-        await deleteEvent(event.id)
-        Para el proyecto final se recomienda eliminación lógica:
-        await updateEvent(event.id, {
-            ...event,
-            isActive: false
-        })
-        */
         toast.success(
             `El evento "${event.title}" fue eliminado de forma simulada.`
         )
@@ -82,51 +75,56 @@ export function EventCard({ event }) {
                         </Link>
                     </Button>
 
-                    {/* Editar */}
-                    <Button
-                        asChild
-                        size="icon"
-                        variant="outline"
-                        className="h-9 w-9 bg-secondary/40 transition-colors hover:bg-accent"
-                    >
-                        <Link to={`/events/${event.id}/edit`} title="Editar evento">
-                            <Pencil className="h-4 w-4" />
-                        </Link>
-                    </Button>
-                    {/* Eliminar */}
-                    <AlertDialog>
-                        <AlertDialogTrigger asChild>
+                    {canManageEvents && (
+                        <>
+                            {/* Editar */}
                             <Button
+                                asChild
                                 size="icon"
                                 variant="outline"
-                                title="Eliminar evento"
-                                className="h-9 w-9 border-destructive/30 bg-destructive/5 text-destructive transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                                className="h-9 w-9 bg-secondary/40 transition-colors hover:bg-accent"
                             >
-                                <Trash2 className="h-4 w-4" />
+                                <Link to={`/events/${event.id}/edit`} title="Editar evento">
+                                    <Pencil className="h-4 w-4" />
+                                </Link>
                             </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                            <AlertDialogHeader>
-                                <AlertDialogTitle>
-                                    ¿Desea eliminar este evento?
-                                </AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    Esta acción solo será simulada. En el proyecto final deberán implementar la eliminación lógica cambiando el estado del evento a inactivo.
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel>
-                                    Cancelar
-                                </AlertDialogCancel>
-                                <AlertDialogAction
-                                    onClick={() => handleDeleteEvent(event)}
-                                    className="bg-destructive hover:bg-destructive/90"
-                                >
-                                    Sí, eliminar
-                                </AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialog>
+
+                            {/* Eliminar */}
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button
+                                        size="icon"
+                                        variant="outline"
+                                        title="Eliminar evento"
+                                        className="h-9 w-9 border-destructive/30 bg-destructive/5 text-destructive transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                                    >
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>
+                                            ¿Desea eliminar este evento?
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Esta acción solo será simulada. En el proyecto final deberán implementar la eliminación lógica cambiando el estado del evento a inactivo.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>
+                                            Cancelar
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
+                                            onClick={() => handleDeleteEvent(event)}
+                                            className="bg-destructive hover:bg-destructive/90"
+                                        >
+                                            Sí, eliminar
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        </>
+                    )}
                 </div>
             </CardFooter>
         </Card>
@@ -142,4 +140,5 @@ EventCard.propTypes = {
         imageUrl: PropTypes.string,
     }).isRequired,
 };
+
 

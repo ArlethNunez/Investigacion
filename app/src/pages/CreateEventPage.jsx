@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PageHeader } from "../components/PageHeader"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 import { EventForm } from "../components/EventForm"
 import { Alert } from "../components/ui/alert"
 import { createEvent } from "../services/eventsService"
@@ -65,6 +66,13 @@ export function CreateEventPage() {
     }
     return (
         <section className="space-y-6">
+            <Breadcrumbs
+                items={[
+                    { label: "Inicio", to: "/" },
+                    { label: "Eventos", to: "/events" },
+                    { label: "Crear evento" },
+                ]}
+            />
             <PageHeader
                 title="Crear evento"
                 description="Complete la información del evento y guarde los datos en la API."

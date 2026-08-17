@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import toast from "react-hot-toast"
 
 import { PageHeader } from "../components/PageHeader"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 import { EventForm } from "../components/EventForm"
 import { Alert } from "../components/ui/alert"
 
@@ -98,6 +99,13 @@ export function EditEventPage() {
     }
     return (
         <section className="space-y-6">
+            <Breadcrumbs
+                items={[
+                    { label: "Inicio", to: "/" },
+                    { label: "Eventos", to: "/events" },
+                    { label: "Editar evento" },
+                ]}
+            />
             <PageHeader
                 title="Editar evento"
                 description="Modifique la información del evento seleccionado."
